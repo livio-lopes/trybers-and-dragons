@@ -14,7 +14,7 @@ class Warrior extends Archetype {
     return this._counterArchetype;
   }
 
-  get energyType(): string {
+  get energyType(): EnergyType {
     return this._energyType;
   }
 }
