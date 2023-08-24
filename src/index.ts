@@ -16,7 +16,8 @@ const monster2: Monster = new Dragon();
 // PVP
 const pvp:PVP = new PVP(player2, player3);
 // PVE
-const pve:PVE = new PVE(player1, [monster1, monster2]);
+const monsters = [monster1, monster2];
+const pve:PVE = new PVE(player1, monsters);
 
 const runBattles = (battles: Battle[]) => {
   battles.forEach((battle) => {
