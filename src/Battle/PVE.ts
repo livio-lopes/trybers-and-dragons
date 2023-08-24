@@ -10,14 +10,15 @@ class PVE extends Battle {
 
   fight(): number {
     const dead = -1;
-    const isLivePlayer = this.player.lifePoints !== dead;
-    const isLiveMonsters = this._monsters
-      .every((monster) => monster.lifePoints !== dead);
-    while (isLivePlayer && isLiveMonsters) {
-      this._monsters.forEach((monster) => {
-        monster.attack(this.player);
-        this.player.attack(monster);
-      });
+    let positionMonters = 0;
+    const numberOfMonsters = this._monsters.length;
+    const isSurvivePlayer = this.player.lifePoints !== dead;
+    while (positionMonters !== numberOfMonsters && isSurvivePlayer) {
+      this.player.attack(this._monsters[positionMonters]);
+      this._monsters[positionMonters].attack(this.player);
+      if (this._monsters[positionMonters].lifePoints === dead) {
+        positionMonters += 1;
+      }
     }
     return this.player.lifePoints === dead ? -1 : 1;
   }
